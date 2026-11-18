@@ -5,6 +5,13 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows your Next.js app to access the API
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # 1. Pydantic model matching your JSON fields (excluding 'id', which is auto-generated)
 class UserCreate(BaseModel):
