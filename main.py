@@ -1,6 +1,8 @@
 import json
 import os
-from fastapi import FastAPI, HTTPException
+
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -12,6 +14,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # 1. Pydantic model matching your JSON fields (excluding 'id', which is auto-generated)
 class UserCreate(BaseModel):
